@@ -17,7 +17,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.5.5",
-    "lastTouchedAt": "2026-05-12T11:32:37.596Z"
+    "lastTouchedAt": "2026-05-12T14:05:22.431Z"
   },
   "agents": {
     "defaults": {
@@ -31,8 +31,23 @@
       "model": {
         "primary": "google/gemini-3.1-flash-preview"
       },
-      "agentRuntime": {
-        "id": "google-gemini-cli"
+      "agentRuntime": {}
+    }
+  },
+  "mcpServers": {
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": ["-y", "mcp-sqlite", "--db-path", "C:\\Users\\Admin\\.openclaw\\memory\\main.sqlite"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
       }
     }
   },
@@ -224,7 +239,7 @@
     }
   },
   "wizard": {
-    "lastRunAt": "2026-05-12T11:32:37.345Z",
+    "lastRunAt": "2026-05-12T14:05:22.146Z",
     "lastRunVersion": "2026.5.5",
     "lastRunCommand": "onboard",
     "lastRunMode": "local"
