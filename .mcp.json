@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": ["-y", "mcp-sqlite", "C:\\Users\\Admin\\.openclaw\\memory\\main.sqlite"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
+      }
+    }
+  }
+}
