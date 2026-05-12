@@ -1,0 +1,55 @@
+{
+  "id": "memory-memplace",
+  "name": "MemPlace Memory Provider",
+  "version": "1.0.0",
+  "description": "Bridges MemPlace (Memory Palace) MCP server into OpenClaw's memory and tool systems. Provides semantic search, diary capture and auto-recall across agent sessions.",
+  "type": "native",
+  "entryPoint": "dist/index.js",
+  "capabilities": ["memory", "tools"],
+  "author": "OpenClaw Integration Layer",
+  "engines": {
+    "openclaw": ">=2026.5.0",
+    "node": ">=24.3.0"
+  },
+  "configSchema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "MemPlacePluginConfig",
+    "description": "Configuration for the MemPlace MCP client plugin.",
+    "required": ["mcpPath"],
+    "additionalProperties": false,
+    "properties": {
+      "mcpPath": {
+        "type": "string",
+        "description": "Absolute path to the mempalace MCP server executable (e.g. /usr/local/bin/mempalace). Must be executable.",
+        "minLength": 1,
+        "examples": ["/usr/local/bin/mempalace", "/home/user/.local/bin/mempalace"]
+      },
+      "autoRecall": {
+        "type": "boolean",
+        "description": "When true, the plugin automatically searches MemPlace for relevant memories before each agent turn (context:pre-turn hook).",
+        "default": true
+      },
+      "autoCapture": {
+        "type": "boolean",
+        "description": "When true, the plugin flushes the conversation transcript to the MemPlace diary before each context compaction (context:pre-compact hook).",
+        "default": true
+      },
+      "topKDefault": {
+        "type": "integer",
+        "description": "Default number of memory results to fetch in auto-recall mode.",
+        "default": 5,
+        "minimum": 1,
+        "maximum": 50
+      },
+      "connectionTimeoutMs": {
+        "type": "integer",
+        "description": "Milliseconds to wait for the MCP server process to become ready before failing.",
+        "default": 5000,
+        "minimum": 500,
+        "maximum": 30000
+      }
+    }
+  },
+  "memorySlot": "memory-memplace"
+}

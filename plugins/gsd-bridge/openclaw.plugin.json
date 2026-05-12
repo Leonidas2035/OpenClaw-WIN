@@ -1,0 +1,53 @@
+{
+  "id": "gsd-bridge",
+  "name": "GSD Execution Bridge",
+  "version": "1.0.0",
+  "description": "Bridges the Get-Shit-Done (GSD) framework .planning/ state into OpenClaw's RalphClaw execution loop via LOOP-QUEUE.md. Provides deterministic task synchronisation, slash-command aliases, and atomic task dispatching.",
+  "type": "native",
+  "entryPoint": "dist/index.js",
+  "capabilities": ["tools", "scheduler"],
+  "author": "OpenClaw Integration Layer",
+  "engines": {
+    "openclaw": ">=2026.5.0",
+    "node": ">=24.3.0"
+  },
+  "configSchema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "GsdBridgeConfig",
+    "description": "Configuration for the GSD ↔ OpenClaw execution bridge.",
+    "required": ["projectRoot"],
+    "additionalProperties": false,
+    "properties": {
+      "projectRoot": {
+        "type": "string",
+        "description": "Absolute path to the active project workspace that contains the .planning/ directory.",
+        "minLength": 1,
+        "examples": ["/home/user/myproject", "/workspace/my-app"]
+      },
+      "syncIntervalMs": {
+        "type": "number",
+        "description": "Interval in milliseconds between automatic GSD→Queue synchronisation cycles.",
+        "default": 600000,
+        "minimum": 10000,
+        "maximum": 86400000,
+        "examples": [600000]
+      },
+      "gsdStatefile": {
+        "type": "string",
+        "description": "Name of the GSD state file inside .planning/ to parse for TODO tasks.",
+        "default": "STATE.md"
+      },
+      "queueFile": {
+        "type": "string",
+        "description": "Path to the LOOP-QUEUE.md file relative to projectRoot. Defaults to .openclaw/LOOP-QUEUE.md.",
+        "default": ".openclaw/LOOP-QUEUE.md"
+      },
+      "inboxFile": {
+        "type": "string",
+        "description": "Path to the LOOP-INBOX.md file relative to projectRoot. Defaults to .openclaw/LOOP-INBOX.md.",
+        "default": ".openclaw/LOOP-INBOX.md"
+      }
+    }
+  }
+}
