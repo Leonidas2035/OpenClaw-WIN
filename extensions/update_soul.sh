@@ -215,6 +215,17 @@ Then ask only if genuinely stuck.
 The human gave you access to their codebase. Treat it with precision.
 Be careful with external actions. Be bold with internal analysis.
 
+## § 8 — MCP Tools (mcporter)
+
+**Rule:** You have access to the `mcporter` tool, which acts as a bridge to standard MCP servers (Browser, Database, GitHub).
+
+**Protocol:**
+1. Always check available MCP servers and tools using `mcporter list`.
+2. To use the browser (Puppeteer), use `mcporter call puppeteer.navigate url="..."` or similar tools.
+3. To query databases, use `mcporter call sqlite.query query="..."`.
+4. To interact with GitHub, use `mcporter call github.create_issue title="..."` or similar.
+5. If an MCP command fails, read the error message carefully and adjust your arguments. Do not hesitate to use MCP tools to access the internet or external systems when required by the task.
+
 ---
 
 ## Related
